@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cat Letter Box for You 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Patrick Hand', cursive;
+      background-color: #fffafc;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      padding-top: 40px;
+      font-size: 3em;
+      color: #ff69b4;
+    }
+
+    .start-btn {
+      display: block;
+      margin: 30px auto;
+      background-color: #ffd1dc;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px #d98fa3;
+    }
+
+    .start-btn:hover {
+      background-color: #ffb6c1;
+    }
+
+    .box-container {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .wish-box {
+      width: 180px;
+      height: 180px;
+      background-color: #fff8f0;
+      border: 2px dashed #ff69b4;
+      margin: 15px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      padding: 10px;
+    }
+
+    .wish-box:hover {
+      transform: scale(1.05);
+      background-color: #ffeef2;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff69b4;
+      animation: fall 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {transform: translateY(-10vh) rotate(0);}
+      100% {transform: translateY(100vh) rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐾 Cat Letter Box 🎉</h1>
+  <button class="start-btn" onclick="showWishes()">Start</button>
+
+  <div class="box-container" id="boxContainer">
+    <!-- Wishes will be loaded here -->
+  </div>
+
+  <script>
+    const wishes = [
+      "May your days be filled with gentle joy and cozy moments. 🧁",
+      "The world is lucky to have someone as kind-hearted as you. 🌍💖",
+      "You deserve love that feels like warm sunshine on a soft day. ☀️",
+      "Your smile has the power to light up the darkest corners. 😸✨",
+      "This year, may your dreams stretch their wings and fly free. 🕊️",
+      "You are magic wrapped in laughter and heart. Never forget that. 🎀",
+      "Let every little moment remind you that you matter so much. 🌸",
+      "Here's to a year of surprises that make your heart dance. 💃💫",
+      "May peace follow you like a loyal cat at your heels. 🐈‍⬛💗",
+      "Grow gentle, grow bold — but always grow in love. 🌱💫"
+    ];
+
+    function showWishes() {
+      const container = document.getElementById('boxContainer');
+      container.innerHTML = '';
+      wishes.forEach((wish) => {
+        const box = document.createElement('div');
+        box.className = 'wish-box';
+        box.textContent = wish;
+        container.appendChild(box);
+      });
+      container.style.display = 'flex';
+    }
+
+    // Confetti
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = Math.random() * -100 + 'px';
+        confetti.style.backgroundColor = ['#ff69b4', '#ffd1dc', '#fff0f5'][Math.floor(Math.random() * 3)];
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    window.onload = createConfetti;
+  </script>
+
+</body>
+</html>
